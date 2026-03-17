@@ -1,0 +1,56 @@
+{
+  "name": "김준성",
+  "role": "백엔드 개발자",
+  "bio": "Spring 기반 백엔드 개발을 즐기며, 클린 아키텍처와 도메인 설계에 관심이 많습니다.",
+  "image": "",
+  "location": "서울, 대한민국",
+
+  "github": "https://github.com",
+  "linkedin": "https://linkedin.com",
+  "email": "",
+
+  "interestDomains": ["RAG 기반 AI 연동", "데이터 정제"],
+
+  "experiences": [
+    {
+      "title": "GDSC 동아리 - 홍익대",
+      "period": "2024.08 - 2024.12",
+      "mainRole": "미니 프로젝트 백엔드",
+      "achievements": [
+        "API 연동",
+        "ERD 데이터 설계"
+      ]
+    },
+    {
+      "title": "졸업 프로젝트 - 홍익대",
+      "period": "2024.03 - 2024.12",
+      "mainRole": "기획 및 백엔드 파트 담당",
+      "achievements": [
+        "Spring 기반 백엔드 도메인 전반 설계 및 구현",
+        "AWS 기반 고가용성 클라우드 운용",
+        "Docker 기반 CI/CD 파이프라인 구축"
+      ]
+    }
+  ],
+
+  "techStack": {
+    "main": ["Java / Spring Boot / MySQL", "Docker / GitHub Actions (CI/CD) / AWS 클라우드"],
+    "sub": ["Python (FastAPI)"],
+    "learning": ["Batch", "Kafka", "MSA", "Kotlin", "TypeScript"]
+  },
+
+  "mbti": "INFJ",
+  "communicationStyle": "팀 규칙을 정해서 서로 불편한 점을 해결해나가는 것을 좋아합니다!!",
+
+  "workTime": ["노을빛 워커"],
+  "reviewStyle": ["꼼꼼한 현미경파"],
+  "conflictStyle": ["평화 유지군"],
+
+  "hobbies": ["🏀 농구", "🍺 스포츠 펍", "✈️ 여행"],
+  "interests": [],
+  "tmi": [],
+
+  "motto": "열심히 계속 우상향으로 성장하자~~!!",
+
+  "projects": []
+}
