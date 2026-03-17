@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팀 포트폴리오</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #09090b;
+            color: #fafafa;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ── 헤더 ─────────────────────────────── */
+        .header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 48px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            backdrop-filter: blur(12px);
+            background: rgba(9,9,11,0.8);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .logo {
+            font-size: 18px; font-weight: 700; letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fafafa 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-links { display: flex; gap: 28px; }
+        .nav-links a {
+            color: #71717a; text-decoration: none; font-size: 13px; font-weight: 500;
+            transition: color .25s ease;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0; right: 0;
+            height: 1px;
+            background: #fafafa;
+            transform: scaleX(0);
+            transition: transform .25s ease;
+        }
+        .nav-links a:hover { color: #fafafa; }
+        .nav-links a:hover::after { transform: scaleX(1); }
+
+        /* ── 본문 ─────────────────────────────── */
+        .container { max-width: 1140px; margin: 0 auto; padding: 72px 24px; }
+
+        .hero { text-align: center; margin-bottom: 80px; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 14px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 100px;
+            font-size: 12px; font-weight: 500; color: #a1a1aa;
+            margin-bottom: 24px;
+        }
+        .hero-badge::before {
+            content: '';
+            width: 6px; height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.8); }
+        }
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 64px);
+            font-weight: 700;
+            letter-spacing: -2.5px;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            background: linear-gradient(180deg, #fafafa 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 16px; color: #71717a;
+            max-width: 400px; margin: 0 auto;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        /* ── 참여 안내 ────────────────────────── */
+        .guide {
+            background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.04) 100%);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 56px;
+            display: flex; align-items: flex-start; gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .guide::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        }
+        .guide-icon {
+            font-size: 24px; flex-shrink: 0;
+            width: 48px; height: 48px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.04);
+            border-radius: 12px;
+        }
+        .guide h3 {
+            font-size: 14px; font-weight: 600; color: #e4e4e7;
+            margin-bottom: 14px;
+            letter-spacing: -0.3px;
+        }
+        .guide ol { padding-left: 20px; }
+        .guide li {
+            font-size: 13px; color: #71717a;
+            line-height: 2.2;
+            margin-bottom: 2px;
+        }
+        .guide code {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px;
+            padding: 2px 8px;
+            font-size: 11px; color: #a1a1aa;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-weight: 500;
+        }
+
+        /* ── 팀원 그리드 ──────────────────────── */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* ── 팀원 카드 ────────────────────────── */
+        .member-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 32px;
+            cursor: pointer;
+            transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none; color: inherit;
+            display: flex; flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        .member-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.03), transparent 40%);
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
+        .member-card:hover::before { opacity: 1; }
+        .member-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,255,255,0.12);
+            box-shadow: 0 20px 40px -12px rgba(0,0,0,0.5);
+        }
+
+        .member-avatar {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: linear-gradient(135deg, #27272a 0%, #18181b 100%);
+            border: 2px solid rgba(255,255,255,0.08);
+            display: flex; align-items: center;
+            justify-content: center;
+            font-size: 24px; font-weight: 600;
+            color: #71717a;
+            margin-bottom: 24px;
+            overflow: hidden;
+            position: relative;
+        }
+        .member-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .member-name {
+            font-size: 18px; font-weight: 600;
+            margin-bottom: 6px;
+            letter-spacing: -0.4px;
+            color: #fafafa;
+        }
+        .member-role {
+            font-size: 13px; color: #71717a;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .member-bio {
+            font-size: 14px; color: #a1a1aa;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            display: -webkit-box; -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical; overflow: hidden;
+            flex: 1;
+        }
+        .member-skills { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill-tag {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: #a1a1aa;
+            padding: 6px 12px; border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all .2s ease;
+        }
+        .member-card:hover .skill-tag {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.1);
+        }
+
+        /* ── 상태 ─────────────────────────────── */
+        .state-box {
+            text-align: center;
+            padding: 100px 20px;
+            color: #52525b;
+            grid-column: 1/-1;
+        }
+        .state-icon {
+            font-size: 56px; margin-bottom: 24px;
+            filter: grayscale(0.3);
+        }
+        .state-text {
+            font-size: 14px;
+            line-height: 2;
+            color: #71717a;
+        }
+        .state-text code {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 3px 10px;
+            border-radius: 6px; font-size: 12px;
+            color: #a1a1aa;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+
+        /* ── 스켈레톤 ─────────────────────────── */
+        .skeleton {
+            background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 20px;
+            padding: 32px;
+        }
+        .sk-circle {
+            width: 72px; height: 72px; border-radius: 50%;
+            background: linear-gradient(90deg, #27272a 0%, #3f3f46 50%, #27272a 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s ease-in-out infinite;
+            margin-bottom: 24px;
+        }
+        .sk-line {
+            height: 14px;
+            background: linear-gradient(90deg, #27272a 0%, #3f3f46 50%, #27272a 100%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s ease-in-out infinite;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* ── 푸터 ─────────────────────────────── */
+        .footer {
+            text-align: center;
+            padding: 48px 20px;
+            margin-top: 80px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            color: #52525b;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        @media (max-width: 768px) {
+            .header { padding: 16px 20px; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 32px; letter-spacing: -1.5px; }
+            .hero { margin-bottom: 48px; }
+            .container { padding: 48px 16px; }
+            .team-grid { grid-template-columns: 1fr; gap: 16px; }
+            .guide { flex-direction: column; gap: 16px; padding: 24px; }
+            .member-card { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">TeamHub</div>
+    <nav class="nav-links">
+        <a href="#team">팀원</a>
+        <a href="#guide">참여 방법</a>
+    </nav>
+</header>
+
+<div class="container">
+    <section class="hero">
+        <div class="hero-badge">팀 구성 완료</div>
+        <h1>우리 팀을 소개합니다</h1>
+        <p>팀원 카드를 클릭하면 상세 프로필을 확인할 수 있어요.</p>
+    </section>
+
+    <!-- 참여 안내 -->
+    <div class="guide" id="guide">
+        <div class="guide-icon">📋</div>
+        <div>
+            <h3>팀원으로 참여하는 방법</h3>
+            <ol>
+                <li><code>members/example.html</code>과 <code>members/example.json</code>을 복사</li>
+                <li>두 파일 모두 <code>members/본인이름.html</code> / <code>members/본인이름.json</code>으로 저장</li>
+                <li>JSON 파일의 내용을 본인 정보로 채우기 (HTML은 자동으로 같은 이름의 JSON을 불러옵니다)</li>
+                <li><code>members/members.json</code> 배열에 슬러그 추가 (예: <code>"hong-gildong"</code>)</li>
+                <li>GitHub에 푸시하면 자동으로 이 페이지에 카드가 추가됩니다!</li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 팀원 카드 그리드 -->
+    <section id="team">
+        <div class="team-grid" id="teamGrid">
+            <div class="skeleton"><div class="sk-circle"></div><div class="sk-line" style="width:50%"></div><div class="sk-line" style="width:35%;height:10px"></div><div class="sk-line" style="width:100%;margin-top:16px"></div><div class="sk-line" style="width:80%"></div></div>
+            <div class="skeleton"><div class="sk-circle"></div><div class="sk-line" style="width:50%"></div><div class="sk-line" style="width:35%;height:10px"></div><div class="sk-line" style="width:100%;margin-top:16px"></div><div class="sk-line" style="width:80%"></div></div>
+        </div>
+    </section>
+</div>
+
+<footer class="footer">
+    <p>© 2026 TeamHub. HTML, CSS, JavaScript로 제작되었습니다.</p>
+</footer>
+
+<script>
+    const teamGrid = document.getElementById('teamGrid');
+
+    // 카드 hover 효과를 위한 마우스 위치 추적
+    document.addEventListener('mousemove', (e) => {
+        const cards = document.querySelectorAll('.member-card');
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+
+    function esc(str) {
+        const d = document.createElement('div');
+        d.textContent = String(str || '');
+        return d.innerHTML;
+    }
+
+    async function loadTeam() {
+        try {
+            // 1) members.json 에서 슬러그 목록 가져오기
+            const res = await fetch('members/members.json');
+            if (!res.ok) throw new Error('members.json 없음');
+            const { members: slugs } = await res.json();
+
+            // 2) 각 슬러그의 JSON 데이터 병렬 로드
+            const settled = await Promise.allSettled(
+                slugs.map(slug =>
+                    fetch(`members/${slug}.json`)
+                        .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+                        .then(data => ({ ...data, _slug: slug }))
+                )
+            );
+
+            const members = settled.filter(r => r.status === 'fulfilled').map(r => r.value);
+            settled.filter(r => r.status === 'rejected').forEach((r, i) =>
+                console.warn(`${slugs[i]} 로드 실패`)
+            );
+
+            renderCards(members);
+        } catch (err) {
+            teamGrid.innerHTML = `
+        <div class="state-box">
+          <div class="state-icon">⚠️</div>
+          <p class="state-text">
+            팀원 정보를 불러올 수 없어요.<br>
+            <code>members/members.json</code> 파일을 확인해주세요.<br>
+            <span style="font-size:12px;color:#52525b;display:block;margin-top:8px">
+              로컬 테스트 시 Live Server를 사용해주세요 (file:// 에서는 fetch 불가)
+            </span>
+          </p>
+        </div>`;
+        }
+    }
+
+    function renderCards(members) {
+        if (!members.length) {
+            teamGrid.innerHTML = `
+        <div class="state-box">
+          <div class="state-icon">👥</div>
+          <p class="state-text">아직 등록된 팀원이 없어요.<br>위 안내를 따라 본인 파일을 추가해보세요!</p>
+        </div>`;
+            return;
+        }
+
+        teamGrid.innerHTML = members.map(m => {
+            // 카드에 표시할 대표 이미지
+            const avatar = m.image
+                ? `<img src="../${esc(m.image)}" alt="${esc(m.name)}" onerror="this.parentElement.textContent='${esc((m.name||'?').charAt(0))}'">`
+                : esc((m.name || '?').charAt(0));
+
+            // 스킬 태그 (최대 4개)
+            const skills = m.skills || [];
+            const topSkills = skills.slice(0, 4);
+            const extra = skills.length - topSkills.length;
+
+            return `
+        <a class="member-card" href="members/${esc(m._slug)}.html">
+          <div class="member-avatar">${avatar}</div>
+          <div class="member-name">${esc(m.name)}</div>
+          <div class="member-role">${esc(m.role)}</div>
+          <div class="member-bio">${esc(m.bio)}</div>
+          <div class="member-skills">
+            ${topSkills.map(s => `<span class="skill-tag">${esc(s)}</span>`).join('')}
+            ${extra > 0 ? `<span class="skill-tag">+${extra}</span>` : ''}
+          </div>
+        </a>`;
+        }).join('');
+    }
+
+    loadTeam();
+</script>
+</body>
+</html>
