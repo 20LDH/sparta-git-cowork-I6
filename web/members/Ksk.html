@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #0d0d0d;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* ── 헤더 ───────────────────────────────── */
+        .header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 24px 48px; border-bottom: 1px solid #222;
+            position: sticky; top: 0; background: #0d0d0d; z-index: 100;
+        }
+        .logo {
+            font-size: 20px; font-weight: 600; letter-spacing: -0.5px;
+            text-decoration: none; color: #fff;
+        }
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a { color: #888; text-decoration: none; font-size: 14px; transition: color .2s; }
+        .nav-links a:hover { color: #fff; }
+
+        /* ── 컨테이너 ───────────────────────────── */
+        .container { max-width: 860px; margin: 0 auto; padding: 48px 24px 80px; }
+
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: #888; text-decoration: none; font-size: 14px;
+            margin-bottom: 40px; transition: color .2s;
+        }
+        .back-link:hover { color: #fff; }
+
+        /* ── 섹션 ───────────────────────────────── */
+        .section { padding: 56px 0; border-bottom: 1px solid #1e1e1e; }
+        .section:last-of-type { border-bottom: none; }
+        .section-number {
+            font-size: 11px; font-weight: 600; letter-spacing: 2px;
+            color: #555; text-transform: uppercase; margin-bottom: 8px;
+        }
+        .section-title { font-size: 22px; font-weight: 700; margin-bottom: 32px; }
+
+        /* ── 히어로 ─────────────────────────────── */
+        .hero {
+            display: flex; align-items: flex-start; gap: 56px;
+            padding: 48px 0 56px; border-bottom: 1px solid #1e1e1e;
+        }
+        .hero-content { flex: 1; }
+        .hero-label {
+            font-size: 11px; font-weight: 600; letter-spacing: 2px;
+            color: #555; text-transform: uppercase; margin-bottom: 16px;
+        }
+        .hero-name { font-size: 40px; font-weight: 700; letter-spacing: -1px; margin-bottom: 6px; }
+        .hero-role { font-size: 18px; color: #888; margin-bottom: 6px; }
+        .hero-location { font-size: 14px; color: #555; margin-bottom: 24px; }
+        .hero-bio { font-size: 14px; color: #888; line-height: 1.8; margin-bottom: 28px; max-width: 440px; }
+
+        .social-links { display: flex; gap: 10px; flex-wrap: wrap; }
+        .social-link {
+            height: 36px; padding: 0 14px; background: #1a1a1a;
+            border: 1px solid #2a2a2a; border-radius: 8px;
+            display: flex; align-items: center; gap: 6px;
+            text-decoration: none; color: #888; font-size: 13px; font-weight: 500;
+            transition: background .2s, color .2s, border-color .2s;
+        }
+        .social-link:hover { background: #252525; color: #fff; border-color: #444; }
+
+        .hero-photo {
+            width: 220px; height: 220px; flex-shrink: 0;
+            background: #161616; border-radius: 20px; border: 1px solid #222;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 72px; overflow: hidden;
+        }
+        .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* ── 서브섹션 ───────────────────────────── */
+        .subsection { margin-bottom: 40px; }
+        .subsection:last-child { margin-bottom: 0; }
+        .subsection-title {
+            font-size: 15px; font-weight: 600; color: #ccc;
+            margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+        }
+
+        /* ── 태그 ───────────────────────────────── */
+        .tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .domain-tag {
+            background: #1a1a1a; border: 1px solid #2e2e2e;
+            color: #bbb; padding: 7px 14px; border-radius: 20px; font-size: 13px;
+        }
+
+        /* ── 경험 카드 ──────────────────────────── */
+        .exp-list { display: flex; flex-direction: column; gap: 16px; }
+        .exp-card {
+            background: #111; border: 1px solid #222;
+            border-radius: 14px; padding: 22px 24px;
+        }
+        .exp-card-header {
+            display: flex; justify-content: space-between;
+            align-items: flex-start; margin-bottom: 12px; gap: 12px;
+        }
+        .exp-title { font-size: 15px; font-weight: 600; }
+        .exp-period {
+            font-size: 12px; color: #666; background: #1a1a1a;
+            padding: 4px 10px; border-radius: 10px; white-space: nowrap; flex-shrink: 0;
+        }
+        .exp-role-label { font-size: 12px; color: #888; margin-bottom: 10px; }
+        .exp-role-label span { color: #aaa; font-weight: 500; }
+        .exp-achievements { padding-left: 16px; }
+        .exp-achievements li { font-size: 13px; color: #777; line-height: 1.7; margin-bottom: 4px; }
+
+        /* ── 기술 스택 ──────────────────────────── */
+        .tech-group { margin-bottom: 18px; }
+        .tech-group:last-child { margin-bottom: 0; }
+        .tech-group-label {
+            font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+            color: #555; text-transform: uppercase; margin-bottom: 10px;
+        }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tech-tag {
+            background: #161616; border: 1px solid #2a2a2a;
+            color: #999; padding: 6px 13px; border-radius: 8px; font-size: 13px;
+        }
+        .tech-tag.main { border-color: #333; color: #ccc; }
+        .tech-tag.learning { color: #557; border-color: #223; background: #0e0e14; }
+
+        /* ── 정보 카드 (MBTI, 소통) ─────────────── */
+        .info-card {
+            background: #111; border: 1px solid #222; border-radius: 12px;
+            padding: 20px 22px; display: flex; align-items: flex-start; gap: 16px;
+        }
+        .info-badge {
+            font-size: 20px; width: 40px; height: 40px; background: #1a1a1a;
+            border-radius: 10px; display: flex; align-items: center;
+            justify-content: center; flex-shrink: 0;
+        }
+        .info-label { font-size: 11px; color: #555; margin-bottom: 4px; letter-spacing: 1px; text-transform: uppercase; }
+        .info-text { font-size: 14px; color: #bbb; line-height: 1.6; }
+
+        /* ── 옵션 선택 ──────────────────────────── */
+        .option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .option-item {
+            background: #111; border: 1px solid #222; border-radius: 12px;
+            padding: 16px 18px; display: flex; align-items: flex-start; gap: 14px;
+        }
+        .option-item.selected { border-color: #4a4a4a; background: #1c1c1c; }
+        .option-item.selected .option-label { color: #fff; }
+        .option-item.selected .option-check { opacity: 1; }
+        .option-emoji { font-size: 20px; flex-shrink: 0; }
+        .option-body { flex: 1; }
+        .option-label { font-size: 13px; font-weight: 600; color: #555; margin-bottom: 3px; }
+        .option-desc { font-size: 11px; color: #444; line-height: 1.4; }
+        .option-check { opacity: 0; font-size: 14px; color: #aaa; flex-shrink: 0; }
+
+        /* ── 단순 리스트 (취미, 관심사, TMI) ───── */
+        .simple-list { display: flex; flex-direction: column; gap: 8px; }
+        .list-item {
+            background: #111; border: 1px solid #1e1e1e; border-radius: 10px;
+            padding: 12px 16px; font-size: 14px; color: #bbb;
+        }
+
+        /* ── 한마디 ─────────────────────────────── */
+        .motto-box {
+            background: #111; border: 1px solid #222; border-radius: 16px;
+            padding: 40px; text-align: center;
+        }
+        .motto-quote { font-size: 40px; color: #2a2a2a; margin-bottom: 12px; }
+        .motto-text { font-size: 20px; font-weight: 600; color: #ccc; line-height: 1.6; }
+
+        /* ── 프로젝트 ───────────────────────────── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+        }
+        .project-card {
+            background: #111; border: 1px solid #222; border-radius: 12px;
+            padding: 22px; transition: border-color .2s;
+        }
+        .project-card:hover { border-color: #383838; }
+        .project-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+        .project-description { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 14px; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+        .project-tag {
+            background: #1a1a1a; color: #777;
+            padding: 3px 9px; border-radius: 10px; font-size: 11px;
+        }
+        .project-links { display: flex; gap: 8px; }
+        .project-link {
+            padding: 7px 14px; border-radius: 6px;
+            text-decoration: none; font-size: 12px; font-weight: 500;
+            transition: opacity .2s;
+        }
+        .project-link.primary { background: #fff; color: #0d0d0d; }
+        .project-link.secondary { background: #1e1e1e; color: #888; }
+        .project-link:hover { opacity: .8; }
+
+        /* ── 유틸 ───────────────────────────────── */
+        .empty-ph { font-size: 13px; color: #444; font-style: italic; padding: 6px 0; }
+
+        .loading-screen {
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            min-height: 80vh; gap: 16px; color: #555;
+        }
+        .spinner {
+            width: 40px; height: 40px;
+            border: 3px solid #222; border-top-color: #555;
+            border-radius: 50%; animation: spin .8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── 푸터 ───────────────────────────────── */
+        .footer {
+            text-align: center; padding: 40px 20px;
+            border-top: 1px solid #1e1e1e; color: #444; font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            .header { padding: 16px 20px; }
+            .nav-links { display: none; }
+            .hero { flex-direction: column-reverse; gap: 32px; }
+            .hero-photo { width: 120px; height: 120px; font-size: 48px; }
+            .hero-name { font-size: 28px; }
+            .option-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <a href="../team-portfolio.html" class="logo">TeamHub</a>
+    <nav class="nav-links">
+        <a href="#hero">대표 이미지</a>
+        <a href="#career">경력</a>
+        <a href="#personality">자기소개</a>
+        <a href="#interests">관심사</a>
+    </nav>
+</header>
+
+<!-- 로딩 -->
+<div class="loading-screen" id="loadingScreen">
+    <div class="spinner"></div>
+    <p>프로필을 불러오는 중...</p>
+</div>
+
+<!-- 본문 (로드 후 표시) -->
+<div class="container" id="profileContainer" style="display:none">
+    <a href="../team-portfolio.html" class="back-link">← 팀으로 돌아가기</a>
+
+    <!-- 00. 대표 이미지 -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-label">00 — 대표 이미지</div>
+            <h1 class="hero-name" id="pName">—</h1>
+            <p class="hero-role" id="pRole"></p>
+            <p class="hero-location" id="pLocation"></p>
+            <p class="hero-bio" id="pBio"></p>
+            <div class="social-links" id="pSocial"></div>
+        </div>
+        <div class="hero-photo" id="pPhoto"></div>
+    </section>
+
+    <!-- 01. 경력 & 경험 -->
+    <section class="section" id="career">
+        <div class="section-number">01</div>
+        <h2 class="section-title">경력 &amp; 경험</h2>
+
+        <div class="subsection">
+            <div class="subsection-title">🎯 관심 도메인</div>
+            <div class="tag-list" id="pDomains"></div>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">🚀 기존 경험</div>
+            <div class="exp-list" id="pExperiences"></div>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">🛠 기술 스택</div>
+            <div id="pTechStack"></div>
+        </div>
+    </section>
+
+    <!-- 02. 자기소개 -->
+    <section class="section" id="personality">
+        <div class="section-number">02</div>
+        <h2 class="section-title">자기소개</h2>
+
+        <div class="subsection">
+            <div class="subsection-title">🧠 MBTI</div>
+            <div class="info-card">
+                <div class="info-badge">🧬</div>
+                <div>
+                    <div class="info-label">나의 유형</div>
+                    <div class="info-text" id="pMbti">—</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">💬 나만의 소통 방식</div>
+            <div class="info-card">
+                <div class="info-badge">🗣️</div>
+                <div>
+                    <div class="info-label">소통 스타일</div>
+                    <div class="info-text" id="pComm">—</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">⏰ 에너지 가동 시간</div>
+            <div class="option-grid" id="pWorkTime">
+                <div class="option-item" data-val="얼리버드 엔진"><span class="option-emoji">🌅</span><div class="option-body"><div class="option-label">얼리버드 엔진</div><div class="option-desc">오전 집중형 · 해 뜨면 코딩 시작</div></div><span class="option-check">✓</span></div>
+                <div class="option-item" data-val="미드데이 부스터"><span class="option-emoji">☀️</span><div class="option-body"><div class="option-label">미드데이 부스터</div><div class="option-desc">낮 시간 집중형 · 점심 먹고 최고조</div></div><span class="option-check">✓</span></div>
+                <div class="option-item" data-val="노을빛 워커"><span class="option-emoji">🌆</span><div class="option-body"><div class="option-label">노을빛 워커</div><div class="option-desc">오후~저녁 집중형 · 퇴근 전 무서운 속도</div></div><span class="option-check">✓</span></div>
+                <div class="option-item" data-val="심야의 코딩술사"><span class="option-emoji">🌑</span><div class="option-body"><div class="option-label">심야의 코딩술사</div><div class="option-desc">새벽형 · 모두가 잠든 뒤 뇌가 깨어남</div></div><span class="option-check">✓</span></div>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">🔍 코드 리뷰 스타일</div>
+            <div class="option-grid" id="pReview">
+                <div class="option-item" data-val="꼼꼼한 현미경파"><span class="option-emoji">🔬</span><div class="option-body"><div class="option-label">꼼꼼한 현미경파</div><div class="option-desc">오타부터 아키텍처까지 세밀하게</div></div><span class="option-check">✓</span></div>
+                <div class="option-item" data-val="핵심 짚어주기파"><span class="option-emoji">🎯</span><div class="option-body"><div class="option-label">핵심 짚어주기파</div><div class="option-desc">큰 흐름과 성능 위주 리뷰</div></div><span class="option-check">✓</span></div>
+                <div class="option-item" data-val="부드러운 응원파"><span class="option-emoji">🌸</span><div class="option-body"><div class="option-label">부드러운 응원파</div><div class="option-desc">칭찬과 함께 개선안을 제안</div></div><span class="option-check">✓</span></div>
+                <div class="option-item" data-val="효율 우선파"><span class="option-emoji">⚡</span><div class="option-body"><div class="option-label">효율 우선파</div><div class="option-desc">빠르게 머지하고 실행하며 고치기</div></div><span class="option-check">✓</span></div>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">⚖️ 갈등 해결 방식</div>
+            <div class="option-grid" id="pConflict">
+                <div class="option-item" data-val="데이터 팩트폭격기"><span class="option-emoji">📊</span><div class="option-body"><div class="option-label">데이터 팩트폭격기</div><div class="option-desc">수치·문서 근거로 해결</div></div><span class="option-check">✓</span></div>
+                <div class="option-item" data-val="평화 유지군"><span class="option-emoji">🕊️</span><div class="option-body"><div class="option-label">평화 유지군</div><div class="option-desc">절충하여 제3의 안 도출</div></div><span class="option-check">✓</span></div>
+                <div class="option-item" data-val="직진 토론러"><span class="option-emoji">💬</span><div class="option-body"><div class="option-label">직진 토론러</div><div class="option-desc">감정 빼고 끝까지 토론</div></div><span class="option-check">✓</span></div>
+                <div class="option-item" data-val="유연한 수용자"><span class="option-emoji">🌊</span><div class="option-body"><div class="option-label">유연한 수용자</div><div class="option-desc">팀 방향에 맞춰 빠르게 수정</div></div><span class="option-check">✓</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03. 관심사 -->
+    <section class="section" id="interests">
+        <div class="section-number">03</div>
+        <h2 class="section-title">관심사</h2>
+        <div class="subsection">
+            <div class="subsection-title">🎮 취미</div>
+            <div class="simple-list" id="pHobbies"></div>
+        </div>
+        <div class="subsection">
+            <div class="subsection-title">🔭 관심사</div>
+            <div class="simple-list" id="pInterests"></div>
+        </div>
+        <div class="subsection">
+            <div class="subsection-title">💡 TMI</div>
+            <div class="simple-list" id="pTmi"></div>
+        </div>
+    </section>
+
+    <!-- 04. 한마디 -->
+    <section class="section">
+        <div class="section-number">04</div>
+        <h2 class="section-title">성장하는 나에게 한마디 🔥</h2>
+        <div class="motto-box">
+            <div class="motto-quote">"</div>
+            <div class="motto-text" id="pMotto">아직 작성되지 않았어요.</div>
+        </div>
+    </section>
+
+    <!-- 프로젝트 -->
+    <section class="section" id="projects">
+        <div class="section-number">+</div>
+        <h2 class="section-title">프로젝트</h2>
+        <div class="projects-grid" id="pProjects"></div>
+    </section>
+</div>
+
+<footer class="footer">
+    <p>© 2026 TeamHub. HTML, CSS, JavaScript로 제작되었습니다.</p>
+</footer>
+
+<script>
+    const currentSlug = location.pathname.split('/').pop().replace('.html', '');
+    const jsonPath    = currentSlug + '.json';
+
+    function esc(str) {
+        const d = document.createElement('div');
+        d.textContent = String(str || '');
+        return d.innerHTML;
+    }
+
+    async function loadProfile() {
+        try {
+            const res = await fetch(jsonPath);
+            if (!res.ok) throw new Error('JSON 없음');
+            render(await res.json());
+        } catch {
+            document.getElementById('loadingScreen').innerHTML = `
+        <div style="text-align:center;color:#555;padding:60px 20px">
+          <div style="font-size:48px;margin-bottom:20px">😶</div>
+          <p style="font-size:15px;line-height:2">
+            <code style="background:#1a1a1a;padding:2px 8px;border-radius:4px;color:#aaa;font-family:monospace">
+              ${esc(jsonPath)}
+            </code> 파일을 찾을 수 없어요.<br>
+            JSON 파일을 이 HTML과 같은 폴더에 두고<br>파일명이 동일한지 확인해주세요.
+          </p>
+          <a href="../team-portfolio.html"
+            style="display:inline-block;margin-top:24px;padding:10px 20px;
+            background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;
+            color:#888;text-decoration:none;font-size:14px">
+            ← 팀으로 돌아가기
+          </a>
+        </div>`;
+        }
+    }
+
+    function render(m) {
+        document.title = `${m.name || '프로필'} — TeamHub`;
+
+        // 히어로
+        document.getElementById('pName').textContent     = m.name     || '—';
+        document.getElementById('pRole').textContent     = m.role     || '';
+        document.getElementById('pLocation').textContent = m.location || '';
+        document.getElementById('pBio').textContent      = m.bio      || '';
+
+        // 사진
+        const photo = document.getElementById('pPhoto');
+        if (m.image) {
+            photo.innerHTML = `<img src="${esc(m.image)}" alt="${esc(m.name)}"
+        onerror="this.parentElement.textContent='${esc((m.name||'?').charAt(0))}'">`;
+        } else {
+            photo.textContent = (m.name || '?').charAt(0);
+        }
+
+        // 소셜 링크
+        let soc = '';
+        if (m.github)   soc += `<a href="${esc(m.github)}"   target="_blank" class="social-link">GH GitHub</a>`;
+        if (m.linkedin) soc += `<a href="${esc(m.linkedin)}" target="_blank" class="social-link">in LinkedIn</a>`;
+        if (m.email)    soc += `<a href="mailto:${esc(m.email)}"             class="social-link">@ 이메일</a>`;
+        document.getElementById('pSocial').innerHTML = soc;
+
+        // 관심 도메인
+        const domains = m.interestDomains || [];
+        document.getElementById('pDomains').innerHTML = domains.length
+            ? domains.map(d => `<span class="domain-tag">${esc(d)}</span>`).join('')
+            : '<span class="empty-ph">작성되지 않았어요.</span>';
+
+        // 기존 경험
+        const exps = m.experiences || [];
+        document.getElementById('pExperiences').innerHTML = exps.length
+            ? exps.map(e => `
+        <div class="exp-card">
+          <div class="exp-card-header">
+            <span class="exp-title">${esc(e.title)}</span>
+            ${e.period ? `<span class="exp-period">${esc(e.period)}</span>` : ''}
+          </div>
+          <div class="exp-role-label">주요 역할: <span>${esc(e.mainRole)}</span></div>
+          ${(e.achievements||[]).length
+                ? `<ul class="exp-achievements">${e.achievements.map(a=>`<li>${esc(a)}</li>`).join('')}</ul>`
+                : ''}
+        </div>`).join('')
+            : '<p class="empty-ph">경험이 아직 작성되지 않았어요.</p>';
+
+        // 기술 스택
+        const ts  = m.techStack || {};
+        let tsHtml = '';
+        if ((ts.main||[]).length)     tsHtml += techGroup('Main',     ts.main,     'main');
+        if ((ts.sub||[]).length)      tsHtml += techGroup('Sub',      ts.sub,      '');
+        if ((ts.learning||[]).length) tsHtml += techGroup('Learning', ts.learning, 'learning');
+        document.getElementById('pTechStack').innerHTML =
+            tsHtml || '<p class="empty-ph">기술 스택이 아직 작성되지 않았어요.</p>';
+
+        // MBTI / 소통방식
+        document.getElementById('pMbti').textContent = m.mbti               || '—';
+        document.getElementById('pComm').textContent = m.communicationStyle || '—';
+
+        // 옵션 선택 표시
+        applyOptions('pWorkTime', m.workTime    || []);
+        applyOptions('pReview',   m.reviewStyle || []);
+        applyOptions('pConflict', m.conflictStyle || []);
+
+        // 리스트
+        renderList('pHobbies',   m.hobbies);
+        renderList('pInterests', m.interests);
+        renderList('pTmi',       m.tmi);
+
+        // 한마디
+        document.getElementById('pMotto').textContent = m.motto || '아직 작성되지 않았어요.';
+
+        // 프로젝트
+        const projs = m.projects || [];
+        document.getElementById('pProjects').innerHTML = projs.length
+            ? projs.map(p => `
+        <div class="project-card">
+          <div class="project-title">${esc(p.title)}</div>
+          <div class="project-description">${esc(p.description)}</div>
+          <div class="project-tags">
+            ${(p.tags||[]).map(t=>`<span class="project-tag">${esc(t)}</span>`).join('')}
+          </div>
+          <div class="project-links">
+            ${p.github ? `<a href="${esc(p.github)}" target="_blank" class="project-link secondary">GitHub</a>` : ''}
+            ${p.demo   ? `<a href="${esc(p.demo)}"   target="_blank" class="project-link primary">데모</a>`     : ''}
+          </div>
+        </div>`).join('')
+            : '<p class="empty-ph">아직 등록된 프로젝트가 없어요.</p>';
+
+        // 화면 전환
+        document.getElementById('loadingScreen').style.display = 'none';
+        document.getElementById('profileContainer').style.display = 'block';
+    }
+
+    function techGroup(label, items, cls) {
+        return `
+      <div class="tech-group">
+        <div class="tech-group-label">${label}</div>
+        <div class="tech-tags">
+          ${items.map(t => `<span class="tech-tag ${cls}">${esc(t)}</span>`).join('')}
+        </div>
+      </div>`;
+    }
+
+    function applyOptions(containerId, selected) {
+        document.querySelectorAll(`#${containerId} .option-item`).forEach(el => {
+            el.classList.toggle('selected', selected.includes(el.dataset.val));
+        });
+    }
+
+    function renderList(id, items) {
+        document.getElementById(id).innerHTML = (items||[]).length
+            ? items.map(i => `<div class="list-item">${esc(i)}</div>`).join('')
+            : '<p class="empty-ph">작성되지 않았어요.</p>';
+    }
+
+    loadProfile();
+</script>
+</body>
+</html>
