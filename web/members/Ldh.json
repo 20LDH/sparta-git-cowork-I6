@@ -1,0 +1,56 @@
+{
+  "name": "이동희",
+  "role": "예비 백엔드 개발자",
+  "location": "경기도 용인시 수지구",
+  "bio": "상대방의 말에 귀 기울이며, 팀의 방향성에 맞춰 유연하게 소통하고 성장하는 개발자 지망생입니다.",
+  "image": "",
+  "github": "https://github.com/20LDH",
+  "linkedin": "",
+  "email": "",
+  "interestDomains": [
+    "Backend Development",
+    "Stock Market Investment"
+  ],
+  "experiences": [
+    {
+      "title": "백엔드 개발 입문",
+      "period": "2026.03 ~ 현재",
+      "mainRole": "학습자",
+      "achievements": [
+        "Java 및 Spring Boot 기초 학습 중",
+        "팀 협업 프로젝트를 위한 Git Flow 익히는 중"
+      ]
+    }
+  ],
+  "techStack": {
+    "main": [],
+    "sub": [],
+    "learning": [
+      "Java",
+      "Spring Boot",
+      "MySQL"
+    ]
+  },
+  "mbti": "INTP",
+  "communicationStyle": "상대방의 말을 귀 기울여 듣고 존중하는 태도로 소통합니다.",
+  "workTime": [
+    "심야의 코딩술사"
+  ],
+  "reviewStyle": [
+    "부드러운 응원파"
+  ],
+  "conflictStyle": [
+    "유연한 수용자"
+  ],
+  "hobbies": [
+    "게임"
+  ],
+  "interests": [
+    "주식 투자 (소액 저축 및 투자)"
+  ],
+  "tmi": [
+    "커피를 좋아하지만 카페인이 잘 안 맞아요 ☕"
+  ],
+  "motto": "정말 초보자이기 때문에 열심히 배워나가겠습니다. 화이팅!",
+  "projects": []
+}
