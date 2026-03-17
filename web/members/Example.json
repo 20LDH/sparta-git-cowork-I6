@@ -1,0 +1,58 @@
+{
+  "_comment": "이 파일을 복사해서 본인 이름으로 저장하고 (예: hong-gildong.json), members.json에 파일명을 추가해주세요!",
+
+  "name": "홍길동",
+  "role": "백엔드 개발자",
+  "bio": "한 줄 자기소개를 여기에 작성해주세요.",
+  "image": "",
+  "location": "서울, 대한민국",
+
+  "github": "https://github.com/username",
+  "linkedin": "https://linkedin.com/in/username",
+  "email": "email@example.com",
+
+  "skills": ["Java", "Spring Boot", "MySQL"],
+
+  "interestDomains": ["RAG 기반 AI 연동", "데이터 정제"],
+
+  "experiences": [
+    {
+      "title": "GDSC 동아리 - ○○대학교",
+      "period": "2024.03 - 2024.12",
+      "mainRole": "백엔드 파트 담당",
+      "achievements": [
+        "API 연동",
+        "ERD 데이터 설계"
+      ]
+    }
+  ],
+
+  "techStack": {
+    "main": ["Java / Spring Boot / MySQL"],
+    "sub": ["Python (FastAPI)"],
+    "learning": ["Kotlin", "TypeScript"]
+  },
+
+  "mbti": "INFJ",
+  "communicationStyle": "나만의 소통 방식을 여기에 작성해주세요.",
+
+  "workTime": ["노을빛 워커"],
+  "reviewStyle": ["꼼꼼한 현미경파"],
+  "conflictStyle": ["평화 유지군"],
+
+  "hobbies": ["🏀 농구", "✈️ 여행"],
+  "interests": ["최신 기술 트렌드"],
+  "tmi": ["카페인 수혈 없으면 코딩 못 함"],
+
+  "motto": "열심히 계속 우상향으로 성장하자!!",
+
+  "projects": [
+    {
+      "title": "프로젝트 이름",
+      "description": "프로젝트 설명을 여기에 작성해주세요.",
+      "tags": ["Spring Boot", "React", "MySQL"],
+      "github": "https://github.com/username/repo",
+      "demo": "https://myproject.com"
+    }
+  ]
+}
