@@ -1,0 +1,47 @@
+{
+  "name": "고수경",
+  "role": "백엔드 개발자",
+  "bio": "다양한 경험과 문제 해결을 기반으로 효율적인 시스템을 설계하는 개발자입니다.",
+  "image": "",
+  "location": "서울, 대한민국",
+
+  "github": "",
+  "linkedin": "",
+  "email": "",
+
+  "skills": ["C#", "Mysql"],
+
+  "interestDomains": ["FinTech", "High Availability Architecture", "Data Engineering"],
+
+  "experiences": [
+    {
+      "title": "게임 개발",
+      "period": "",
+      "mainRole": "게임 서버",
+      "achievements": [
+        "게임 서버 콘텐츠 개발"
+      ]
+    }
+  ],
+
+  "techStack": {
+    "main": ["C#", "Mysql"],
+    "sub": ["C++", "Redis", "Unity"],
+    "learning": ["Java", "Spring"]
+  },
+
+  "mbti": "INFP",
+  "communicationStyle": "처음에만 낯을 많이 가리는 편이라 먼저 말을 걸어주신다면 활발해집니다.",
+
+  "workTime": ["심야의 코딩술사"],
+  "reviewStyle": ["핵심 짚어주기파"],
+  "conflictStyle": ["직진 토론러"],
+
+  "hobbies": ["게임", "음악"],
+  "interests": [],
+  "tmi": ["강아지 키웁니다"],
+
+  "motto": "자만하지 말고 꾸준히 성장하자 ",
+
+  "projects": []
+}

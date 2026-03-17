@@ -1,0 +1,62 @@
+{
+  "name": "이지영",
+  "role": "백엔드 개발자",
+  "bio": "백엔드 개발자를 목표로 기초부터 차근차근 배우며 꾸준히 성장하고 있는 개발자입니다.",
+  "image": "image.01",
+  "location": "서울, 대한민국",
+
+  "github": "https://github.com/dlkfjdsklf1010",
+  "linkedin": "",
+  "email": "dlkfjdsklf1010@gmail.com",
+
+  "skills": ["Java", "Spring Boot", "MySQL", "Git", "GitHub"],
+
+  "interestDomains": ["백엔드 개발", "데이터베이스", "서버 개발"],
+
+  "experiences": [
+    {
+      "title": "개발 학습 및 개인 프로젝트",
+      "period": "2025 - 현재",
+      "mainRole": "백엔드 개발 학습",
+      "achievements": [
+        "Java와 Spring Boot 기반 백엔드 개발 학습",
+        "Git과 GitHub를 활용한 협업 방식 학습",
+        "데이터베이스(MySQL) 기초 학습"
+      ]
+    }
+  ],
+
+  "techStack": {
+    "main": ["Java", "Spring Boot", "MySQL"],
+    "sub": ["Git", "GitHub"],
+    "learning": ["Kotlin", "TypeScript"]
+  },
+
+  "mbti": "INTP",
+
+  "communicationStyle": "팀원들과의 원활한 소통을 중요하게 생각하며 서로의 의견을 존중하는 협업을 지향합니다.",
+
+  "workTime": ["🌙 심야의 코딩술사 (밤에 집중이 잘 되는 편)"],
+
+  "reviewStyle": ["부드러운 응원파: 칭찬과 함께 개선점을 제안하는 스타일"],
+
+  "conflictStyle": ["유연한 수용자: 팀의 방향을 고려하며 의견을 조율하려 노력합니다."],
+
+  "hobbies": ["🎮 게임"],
+
+  "interests": ["백엔드 기술 학습", "개발 공부"],
+
+  "tmi": ["게임을 좋아합니다."],
+
+  "motto": "꾸준히 배우고 성장하는 개발자가 되자.",
+
+  "projects": [
+    {
+      "title": "온보딩 자기소개 프로젝트",
+      "description": "Markdown을 활용하여 자기소개 문서를 작성하고 GitHub 협업 방식(PR, Merge)을 학습한 프로젝트",
+      "tags": ["Markdown", "Git", "GitHub"],
+      "github": "https://github.com/20LDH/sparta-git-cowork-I6",
+      "demo": ""
+    }
+  ]
+}
