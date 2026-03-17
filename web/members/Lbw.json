@@ -1,0 +1,49 @@
+{
+  "name": "이병우",
+  "role": "백엔드 개발자",
+  "bio": "백엔드 기술을 기반으로 문제 해결과 서비스 구조 이해를 통해 성장하고 있는 예비 개발자입니다.",
+  "image": null,
+  "location": "서울, 대한민국",
+
+  "github": "https://github.com/",
+  "linkedin": "https://linkedin.com/",
+  "email": "lbw0109@gmail.com",
+
+  "skills": ["Java", "Spring Boot", "MySQL", "Python", "jQuery"],
+
+  "interestDomains": ["AI", "배포 및 인프라 영역"],
+
+  "experiences": [
+    {
+      "title": "졸업 작품전시회",
+      "period": "2023.02 - 2023.09",
+      "mainRole": "풀스택 파트 담당",
+      "achievements": [
+        "Spring 기반 풀스택 웹 서비스 개발",
+        "DB설계 및 운용",
+        "외부 API연동 및 크롤링 로직 개발"
+      ]
+    }
+  ],
+
+  "techStack": {
+    "main": ["Java / Spring Boot / MySQL / jQuery"],
+    "sub": ["Python"],
+    "learning": ["React", "AWS", "Jenkins"]
+  },
+
+  "mbti": "ISTJ",
+  "communicationStyle": "평소에는 말수가 없어 보통 조용히 듣기만 하고 내적친밀감이 생기면 그때부턴 괜찮아집니다",
+
+  "workTime": ["미드데이 부스터","노을빛 워커"],
+  "reviewStyle": ["꼼꼼한 현미경파"],
+  "conflictStyle": ["평화 유지군", "직진 토론러"],
+
+  "hobbies": ["⚾ 야구", "✈️ 여행"],
+  "interests": ["⚾ 야구직관"],
+  "tmi": ["걷는거 좋아하고 지루하다 느껴지면 흥미를 잃습니다"],
+
+  "motto": "많이 배우고 성장해서 취업 성공하자~",
+
+  "projects": []
+}
